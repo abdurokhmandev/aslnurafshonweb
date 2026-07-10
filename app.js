@@ -17,16 +17,8 @@ if (tg) {
 
 // Setup common UI elements on load
 document.addEventListener('DOMContentLoaded', () => {
-    // Profil sahifasiga foydalanuvchi ma'lumotlarini yuklash
-    const isProfilePage = window.location.pathname.includes('profil.html');
-    if (isProfilePage && tgUser) {
-        const nameEl = document.querySelector('.profile-name'); // Class or ID in profile.html
-        const userEl = document.querySelector('.profile-username');
-        const imgEl = document.querySelector('.profile-image');
-
-        if (nameEl) nameEl.textContent = `${tgUser.first_name} ${tgUser.last_name || ''}`;
-        if (userEl && tgUser.username) userEl.textContent = `@${tgUser.username}`;
-        if (imgEl && tgUser.photo_url) imgEl.src = tgUser.photo_url;
+    if (window.location.pathname.includes('profil.html')) {
+        loadProfile();
     }
 
     // Savat va Mahsulot funksiyalari uchun API tayyorgarligi
@@ -300,7 +292,7 @@ function removeFromCart(index) {
     loadCart();
 }
 
-function loadCheckout() {
+async function loadCheckout() {
     const container = document.getElementById('checkout-items');
     const subtotalEl = document.getElementById('checkout-subtotal');
     const totalEl = document.getElementById('checkout-total');
@@ -336,6 +328,17 @@ function loadCheckout() {
 
     if (subtotalEl) subtotalEl.textContent = `${total.toLocaleString()} UZS`;
     if (totalEl) totalEl.textContent = `${(total + deliveryFee).toLocaleString()} UZS`;
+
+    // Fetch phone number
+    try {
+        const profile = await fetchAPI('/accounts/profile/');
+        const phoneInput = document.getElementById('checkout-phone');
+        if (phoneInput && profile.phone) {
+            phoneInput.value = profile.phone;
+        }
+    } catch (e) {
+        console.error("Profilni yuklashda xatolik", e);
+    }
 }
 
 async function submitOrder() {
@@ -346,6 +349,26 @@ async function submitOrder() {
     // Hozircha "address" qismi inputdan olinadi, soddalashtirilgan:
     const addressInput = document.querySelector('input[placeholder="Manzilni kiriting yoki xaritadan tanlang"]');
     const address = addressInput ? addressInput.value : 'Toshkent shahar';
+    
+    const phoneInput = document.getElementById('checkout-phone');
+    const phoneError = document.getElementById('checkout-phone-error');
+    if (phoneInput && !phoneInput.value.trim()) {
+        if (phoneError) phoneError.classList.remove('hidden');
+        return;
+    }
+    if (phoneError) phoneError.classList.add('hidden');
+    
+    // Save phone to profile if it exists
+    if (phoneInput && phoneInput.value.trim()) {
+        try {
+            await fetchAPI('/accounts/profile/', {
+                method: 'PATCH',
+                body: JSON.stringify({ phone: phoneInput.value.trim() })
+            });
+        } catch (e) {
+            console.error("Telefon raqamni saqlashda xato", e);
+        }
+    }
 
     try {
         const response = await fetchAPI('/orders/', {
@@ -389,4 +412,43 @@ async function fetchAPI(endpoint, options = {}) {
         throw new Error('Tarmoq xatosi yoki ruxsat yo`q');
     }
     return response.json();
+}
+
+// Profil sahifasini yuklash
+async function loadProfile() {
+    const nameEl = document.querySelector('.profile-name');
+    const phoneEl = document.querySelector('.profile-phone');
+    const imgEl = document.querySelector('.profile-image');
+    const initialEl = document.querySelector('.profile-initial');
+    const ordersCountEl = document.querySelector('.profile-orders-count');
+    
+    if (tgUser) {
+        if (nameEl) nameEl.textContent = `${tgUser.first_name} ${tgUser.last_name || ''}`.trim();
+        if (imgEl && tgUser.photo_url) {
+            imgEl.src = tgUser.photo_url;
+            imgEl.classList.remove('hidden');
+            if (initialEl) initialEl.classList.add('hidden');
+        } else if (initialEl) {
+            initialEl.textContent = tgUser.first_name ? tgUser.first_name.charAt(0).toUpperCase() : 'U';
+        }
+    }
+    
+    try {
+        const res = await fetchAPI('/orders/');
+        const orders = res.results || res;
+        if (ordersCountEl) {
+            ordersCountEl.textContent = `${orders.length} ta buyurtma`;
+        }
+    } catch (e) {
+        console.error("Buyurtmalarni yuklashda xatolik", e);
+    }
+    
+    try {
+        const profileData = await fetchAPI('/accounts/profile/');
+        if (phoneEl) {
+            phoneEl.textContent = profileData.phone_number || "Telefon raqam kiritilmagan";
+        }
+    } catch (e) {
+        console.error("Profil ma'lumotlarini yuklashda xatolik", e);
+    }
 }

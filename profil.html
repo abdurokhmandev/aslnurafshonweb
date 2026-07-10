@@ -143,21 +143,19 @@
 </header>
 <!-- Main Content Canvas -->
 <main class="flex-1 w-full max-w-container-max mx-auto overflow-y-auto pb-bottom-nav-h px-margin-mobile md:px-lg mt-md">
-<!-- Brand / Identity Area -->
-<div class="flex justify-center mb-lg">
-<img alt="Asl Nurafshon Logo" class="h-20 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiWXHYmMB1XfMHAiYfbOwbGJSvZcX4glaFhRk1VQZLwQFft7cigCkvqjs6eiW79p0jAbivTP-JtlLDLAQGKDsZZgLeodEF0b4XLnVm11naH2Mu6C7jT4oM_oUSKae4QML3ZXjusH4sDHyXPRzAoORLD_5htnO-YDCEa7yBgr0cUXJe58J7ZPtM-aPA-X0dN9yv0GL0KK5RjscppnguA3whlOLP99Iz3k00p8wwf0cxLuf7j4X-ZcpwgQ"/>
-</div>
+
 <!-- User Info Card -->
 <section class="bg-surface-container-lowest rounded-2xl shadow-level-1 p-lg mb-lg border border-surface-variant/50">
 <div class="flex items-center gap-md">
-<div class="w-16 h-16 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-headline-md shrink-0">
-                    S
+<div class="w-16 h-16 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-headline-md shrink-0 overflow-hidden">
+                    <img src="" class="profile-image hidden w-full h-full object-cover" alt="Profile" />
+                    <span class="profile-initial">...</span>
                 </div>
 <div>
-<h2 class="font-headline-md text-headline-md text-on-surface mb-xs">Sardor Usmanov</h2>
+<h2 class="profile-name font-headline-md text-headline-md text-on-surface mb-xs">Yuklanmoqda...</h2>
 <p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-sm">
 <span class="material-symbols-outlined text-[18px]">phone_iphone</span>
-                        +998 90 123 45 67
+                        <span class="profile-phone">Telefon raqam kiritilmagan</span>
                     </p>
 </div>
 </div>
@@ -165,13 +163,13 @@
 <!-- Quick Actions Bento -->
 <div class="grid grid-cols-2 gap-md mb-lg">
 <!-- Order History -->
-<a class="bg-surface-container-lowest rounded-2xl shadow-level-1 p-md flex flex-col items-start gap-md hover:shadow-level-2 transition-shadow border border-surface-variant/50" href="#">
+<a class="bg-surface-container-lowest rounded-2xl shadow-level-1 p-md flex flex-col items-start gap-md hover:shadow-level-2 transition-shadow border border-surface-variant/50" href="buyurtmalar.html">
 <div class="w-10 h-10 rounded-full bg-secondary-container/20 text-secondary flex items-center justify-center">
 <span class="material-symbols-outlined icon-fill">receipt_long</span>
 </div>
 <div>
 <h3 class="font-label-md text-label-md text-on-surface">Buyurtmalar tarixi</h3>
-<p class="font-label-sm text-label-sm text-on-surface-variant mt-xs">12 ta buyurtma</p>
+<p class="profile-orders-count font-label-sm text-label-sm text-on-surface-variant mt-xs">... ta buyurtma</p>
 </div>
 </a>
 <!-- Saved Addresses -->
@@ -185,50 +183,7 @@
 </div>
 </a>
 </div>
-<!-- Favorite Products Section -->
-<section class="mb-xl">
-<div class="flex justify-between items-center mb-md">
-<h2 class="font-headline-sm text-headline-sm text-on-surface">Sevimli mahsulotlar</h2>
-<button class="font-label-sm text-label-sm text-primary hover:text-secondary transition-colors flex items-center">
-                    Barchasi <span class="material-symbols-outlined text-[16px] ml-xs">chevron_right</span>
-</button>
-</div>
-<div class="flex gap-md overflow-x-auto hide-scrollbar pb-md -mx-margin-mobile px-margin-mobile md:mx-0 md:px-0">
-<!-- Product Item 1 -->
-<div class="w-32 shrink-0 group">
-<div class="bg-surface-container-lowest rounded-xl shadow-level-1 p-sm mb-sm aspect-square relative overflow-hidden border border-surface-variant/50">
-<img class="w-full h-full object-cover rounded-lg" data-alt="A high-quality, close-up photograph of fresh premium green tea leaves scattered on a clean, light-mode background. The lighting is soft and natural, emphasizing the vibrant green colors and organic textures. The aesthetic is clean, modern, and appetizing, fitting for a high-end delivery service. Minimalist composition with ample whitespace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWaQbhs1QP-2YspB-d_41-EYQF2Ew8vp7XJy64pOgIUZO-vW7nW1C1Q9m7qqao2Q_lXrUnFtRrUYbM5kxaiGDDT3bBOUBqNk56uIshqoIlBRKFetUUXUWAeQyyFNpQJaH-kp2YVNohS22h477TERD66bK_DX-ykPX3yy3SBHh1-jtYxyiLYXPwE-OwDf5LmN5OPWWJtBhiBFo1xMDxab_MtV6O9uL2b_nspoF2l7HbuS_87B5rvYFChA"/>
-<button class="absolute top-2 right-2 text-error bg-surface-container-lowest/80 rounded-full w-6 h-6 flex items-center justify-center backdrop-blur-sm">
-<span class="material-symbols-outlined text-[16px] icon-fill">favorite</span>
-</button>
-</div>
-<p class="font-label-sm text-label-sm text-on-surface truncate">Ko'k choy premium</p>
-<p class="font-label-sm text-label-sm text-on-surface-variant">250g</p>
-</div>
-<!-- Product Item 2 -->
-<div class="w-32 shrink-0 group">
-<div class="bg-surface-container-lowest rounded-xl shadow-level-1 p-sm mb-sm aspect-square relative overflow-hidden border border-surface-variant/50">
-<img class="w-full h-full object-cover rounded-lg" data-alt="A high-quality, close-up photograph of freshly roasted coffee beans piled on a clean, light-mode surface. The lighting is warm and directional, bringing out the rich, oily brown tones of the beans. The aesthetic is high-end, tactile, and appetizing, perfectly aligned with a premium grocery experience. Subtle terracotta background accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuByLJ0yDH9K4Xte-78VWpM5RCk0B_bvw9A6OHS0zus5Ws_swMYwc5uFfDTCpMATA_DXEOsGQCQMG2X1SmNcWlIl9q_-51r82A4Hs41uop9tAohJyJkTWDsQoxu1Y-eqQ8KlgeIh9ywtOdffbG7AoJ3JVLfDqwkz8_VfSzQj0Whqq-gFnmYoCKwM-0tFfCf0hT9Vz4tunlCZKjln2sl53UqDiGH6VZhOGit4KbkTX7TgLUbn4wTmNPtL1w"/>
-<button class="absolute top-2 right-2 text-error bg-surface-container-lowest/80 rounded-full w-6 h-6 flex items-center justify-center backdrop-blur-sm">
-<span class="material-symbols-outlined text-[16px] icon-fill">favorite</span>
-</button>
-</div>
-<p class="font-label-sm text-label-sm text-on-surface truncate">Qovurilgan qahva</p>
-<p class="font-label-sm text-label-sm text-on-surface-variant">500g</p>
-</div>
-<!-- Product Item 3 -->
-<div class="w-32 shrink-0 group">
-<div class="bg-surface-container-lowest rounded-xl shadow-level-1 p-sm mb-sm aspect-square relative overflow-hidden border border-surface-variant/50">
-<img class="w-full h-full object-cover rounded-lg" data-alt="A high-quality, close-up photograph of a fresh, crusty artisanal bread loaf on a clean, light-mode marble surface. The lighting highlights the golden-brown crust and soft interior. The aesthetic is warm, rustic yet modern, emphasizing freshness and premium quality for a delivery app. Clean composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXk6ySod_31wly33YA4IYDWM0w5kbYf3Aoqa1J-AlgWfWGoXuYFv4qEWgB57miRvTFfhM_OSA-U5px82BW1aeM1LqfSR6OLedBvnON6WfqqdfR6JqyBC3D2OLdDdTjXtMmvolg7MuspnSvv6NhBHymlXa7Z2zHXDy_QPYQ92dNYv4wLtx-1KRf49JpeEPeqvOp_XTJRhHssSIuxfuqUhIabZEyzeIdrC0aQde3n_SN_l6CEIDsmsjnHQ"/>
-<button class="absolute top-2 right-2 text-error bg-surface-container-lowest/80 rounded-full w-6 h-6 flex items-center justify-center backdrop-blur-sm">
-<span class="material-symbols-outlined text-[16px] icon-fill">favorite</span>
-</button>
-</div>
-<p class="font-label-sm text-label-sm text-on-surface truncate">Tandir non</p>
-<p class="font-label-sm text-label-sm text-on-surface-variant">1 dona</p>
-</div>
-</div>
-</section>
+
 <!-- Settings List -->
 <section class="bg-surface-container-lowest rounded-2xl shadow-level-1 mb-xl border border-surface-variant/50 overflow-hidden">
 <a class="flex items-center justify-between p-md border-b border-surface-variant hover:bg-surface-container-low transition-colors" href="#">
