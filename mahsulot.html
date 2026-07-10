@@ -134,15 +134,9 @@
 <!-- Left Column: Image Gallery (Span 6 on desktop) -->
 <div class="md:col-span-6 lg:col-span-7 flex flex-col gap-sm">
 <div class="aspect-square w-full rounded-xl overflow-hidden bg-surface-container-low relative ambient-shadow">
-<img class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" data-alt="A large, striking product photograph of a premium Asl Nurafshon black tea package. The packaging features elegant gold and navy branding. It is beautifully lit with soft, natural light against a pristine white background. A few scattered, rich brown tea leaves rest on the surface, emphasizing freshness, quality, and a high-end minimalist grocery aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWnbFhBmu1tYBiU-RZrsHLi7NEMhfSb6ximSZTwgL-eLiIN67WPi-oU6B1WJcLQ2xCiIv-8KenGH2ktgY9DCJWqK-OXVGhYa7sLmX5lpuTKDqzOAG8CuYCKgWz0Dyf1ac97s67Wn9svCCETvYuDH0WtuA7WO34qmOg3K7YSCTbW02fZp0_RaGjApEMVceucW88sPrFNzRpMW0L9vMupROsql1jtlw7m6_SvmUUIOhJCgFIB7pm7sXPEQ"/>
+<img id="product-image" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" data-alt="Product Image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWnbFhBmu1tYBiU-RZrsHLi7NEMhfSb6ximSZTwgL-eLiIN67WPi-oU6B1WJcLQ2xCiIv-8KenGH2ktgY9DCJWqK-OXVGhYa7sLmX5lpuTKDqzOAG8CuYCKgWz0Dyf1ac97s67Wn9svCCETvYuDH0WtuA7WO34qmOg3K7YSCTbW02fZp0_RaGjApEMVceucW88sPrFNzRpMW0L9vMupROsql1jtlw7m6_SvmUUIOhJCgFIB7pm7sXPEQ"/>
 <!-- Decorative subtle overlay for premium feel -->
 <div class="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent pointer-events-none"></div>
-<!-- Image Pagination Dots -->
-<div class="absolute bottom-4 left-0 w-full flex justify-center gap-2">
-<div class="w-2 h-2 rounded-full bg-primary"></div>
-<div class="w-2 h-2 rounded-full bg-outline-variant/50"></div>
-<div class="w-2 h-2 rounded-full bg-outline-variant/50"></div>
-</div>
 </div>
 </div>
 <!-- Right Column: Details & Actions (Span 6 on desktop) -->
@@ -150,13 +144,13 @@
 <div class="flex-1">
 <!-- Meta Info -->
 <div class="mb-xs">
-<span class="font-label-sm text-label-sm text-secondary tracking-wider uppercase">Premium Qora Choy</span>
+<span id="product-category" class="font-label-sm text-label-sm text-secondary tracking-wider uppercase">Yuklanmoqda...</span>
 </div>
 <!-- Title -->
-<h2 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface mb-2 leading-tight">Keniya Tog'lari Xazinasi</h2>
+<h2 id="product-name" class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface mb-2 leading-tight">Yuklanmoqda...</h2>
 <!-- Price -->
-<div class="font-headline-md text-headline-md text-primary mb-lg">
-                    65,000 UZS
+<div id="product-price" class="font-headline-md text-headline-md text-primary mb-lg">
+                    0 UZS
                 </div>
 <hr class="border-outline-variant/50 mb-lg"/>
 <!-- Weight Selector (Chips) -->
@@ -171,8 +165,8 @@
 <!-- Description -->
 <div class="mb-xl">
 <h3 class="font-label-md text-label-md text-on-surface-variant mb-sm">Mahsulot haqida</h3>
-<p class="font-body-md text-body-md text-on-surface leading-relaxed">
-                        Yuqori sifatli, yirik bargli qora choy. Keniya tog' yonbag'irlaridan ehtiyotkorlik bilan terilgan ushbu choy o'zining boy ta'mi, to'q rangi va o'ziga xos xushbo'y hidi bilan ajralib turadi. Ertalabki nonushta yoki kechki sokin damlar uchun ideal tanlov.
+<p id="product-description" class="font-body-md text-body-md text-on-surface leading-relaxed">
+                        Yuklanmoqda...
                     </p>
 </div>
 </div>
@@ -186,7 +180,7 @@
 <button class="w-12 h-full flex items-center justify-center text-on-surface hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">add</span></button>
 </div>
 <!-- Add to Cart -->
-<button class="flex-1 bg-primary text-on-primary rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-primary-container transition-all interactive-shadow">
+<button id="product-add-btn" class="flex-1 bg-primary text-on-primary rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-primary-container transition-all interactive-shadow">
 <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
                         Savatga qo'shish
                     </button>

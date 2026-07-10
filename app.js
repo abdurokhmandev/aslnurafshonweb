@@ -39,7 +39,123 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.location.pathname.includes('checkout.html')) {
         loadCheckout();
     }
+    if (window.location.pathname.includes('index.html') || window.location.pathname.endsWith('/')) {
+        loadHome();
+    }
+    if (window.location.pathname.includes('buyurtmalar.html')) {
+        loadOrders();
+    }
+    if (window.location.pathname.includes('mahsulot.html')) {
+        loadProductDetail();
+    }
 });
+
+async function loadProductDetail() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+    if (!productId) return;
+
+    try {
+        const p = await fetchAPI(`/catalog/products/${productId}/`);
+        
+        // Populate DOM elements (assuming they have IDs)
+        const imgEl = document.getElementById('product-image');
+        const nameEl = document.getElementById('product-name');
+        const descEl = document.getElementById('product-description');
+        const priceEl = document.getElementById('product-price');
+        const addBtn = document.getElementById('product-add-btn');
+
+        if (imgEl) imgEl.src = p.image;
+        if (nameEl) nameEl.textContent = p.name;
+        if (descEl) descEl.textContent = p.description || '';
+        
+        const price = p.variants[0]?.price || 0;
+        if (priceEl) priceEl.textContent = `${price.toLocaleString()} UZS`;
+
+        if (addBtn) {
+            addBtn.onclick = () => addToCart(p.id, p.name, price, p.image);
+        }
+    } catch (e) {
+        console.error("Product detail error:", e);
+    }
+}
+
+async function loadHome() {
+    const bannersContainer = document.getElementById('home-banners');
+    const popularContainer = document.getElementById('home-popular');
+    const newContainer = document.getElementById('home-new');
+
+    try {
+        const data = await fetchAPI('/catalog/home/');
+        
+        // If we have DOM elements, populate them
+        if (popularContainer && data.popular_products) {
+            popularContainer.innerHTML = '';
+            data.popular_products.forEach(p => {
+                const price = p.min_price ? p.min_price.toLocaleString() : '0';
+                popularContainer.innerHTML += `
+                <div class="snap-start shrink-0 w-[160px] md:w-[200px] flex flex-col group cursor-pointer" onclick="window.location.href='mahsulot.html?id=${p.id}'">
+                    <div class="w-full aspect-square rounded-xl overflow-hidden bg-surface-container-low mb-sm relative">
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <h4 class="font-label-md text-label-md text-on-surface line-clamp-2">${p.name}</h4>
+                    <p class="font-headline-sm text-headline-sm text-primary mt-1">${price} UZS</p>
+                </div>`;
+            });
+        }
+        
+        if (newContainer && data.new_products) {
+            newContainer.innerHTML = '';
+            data.new_products.forEach(p => {
+                const price = p.min_price ? p.min_price.toLocaleString() : '0';
+                newContainer.innerHTML += `
+                <div class="snap-start shrink-0 w-[160px] md:w-[200px] flex flex-col group cursor-pointer" onclick="window.location.href='mahsulot.html?id=${p.id}'">
+                    <div class="w-full aspect-square rounded-xl overflow-hidden bg-surface-container-low mb-sm relative">
+                        <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-2 left-2 bg-secondary text-on-secondary text-[10px] font-bold px-2 py-1 rounded-full">YANGI</div>
+                    </div>
+                    <h4 class="font-label-md text-label-md text-on-surface line-clamp-2">${p.name}</h4>
+                    <p class="font-headline-sm text-headline-sm text-primary mt-1">${price} UZS</p>
+                </div>`;
+            });
+        }
+    } catch (e) {
+        console.error("Home error:", e);
+    }
+}
+
+async function loadOrders() {
+    const container = document.getElementById('orders-container');
+    if (!container) return;
+
+    try {
+        const orders = await fetchAPI('/orders/');
+        container.innerHTML = '';
+        if (orders.length === 0) {
+            container.innerHTML = '<p class="text-center text-on-surface-variant p-4">Sizda hali buyurtmalar yo`q.</p>';
+            return;
+        }
+
+        orders.forEach(order => {
+            const date = new Date(order.created_at).toLocaleDateString('uz-UZ');
+            container.innerHTML += `
+            <div class="bg-surface-container-lowest rounded-xl p-md mb-sm border border-surface-container-low shadow-sm">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="font-label-md font-bold text-on-surface">Buyurtma #${order.id}</span>
+                    <span class="font-label-sm text-outline-variant">${date}</span>
+                </div>
+                <div class="text-on-surface-variant font-body-md text-sm mb-2">
+                    Jami: <span class="font-bold text-primary">${order.total_amount.toLocaleString()} UZS</span>
+                </div>
+                <div class="text-on-surface-variant font-body-md text-sm">
+                    Holati: <span class="text-secondary font-bold">${order.status_display || order.status}</span>
+                </div>
+            </div>`;
+        });
+    } catch (e) {
+        container.innerHTML = '<p class="text-center text-error p-4">Buyurtmalarni yuklashda xatolik.</p>';
+    }
+}
 
 async function loadCatalog() {
     const grid = document.getElementById('products-grid');
