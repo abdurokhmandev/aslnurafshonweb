@@ -221,56 +221,29 @@
 <!-- Section: Order Summary -->
 <section class="bg-surface rounded-xl shadow-level-1 p-md md:p-lg border border-surface-container-high mb-lg">
 <h3 class="font-headline-sm text-headline-sm text-on-surface mb-md">Buyurtma tarkibi</h3>
-<div class="flex flex-col gap-md">
-<!-- Item 1 -->
-<div class="flex items-center gap-4 border-b border-surface-container-high pb-4">
-<div class="w-16 h-16 rounded-lg bg-surface-container-low overflow-hidden flex-shrink-0">
-<img class="w-full h-full object-cover" data-alt="A close-up, high-quality, brightly lit photograph of fresh, vibrant green tea leaves in a clear, minimalist glass jar. The aesthetic is clean, modern, and light-mode compatible, focusing on organic textures and premium quality. The background is a soft, pristine white, emphasizing the product's freshness and natural colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyvpbTTVxfefB5CCzaeLOREhQLlD9x7UOCESBDwh-wtLyLB6JGWaLZ7QwaxH1r7yyfqQXf-rwkcJhClNeJ9X-eQPNXlncxLcqk5ST5_hXASiaZ2isudhkbP-AUrzeyGmu3-29NstLyYUaKo6hz5HEGESg_e0o6WaixgGdT7lkgI6oKjbHRs8nCoFMej4glthO14GRmqtOYy55__9Scchp8DTBpkx-kv6-9QFxgAzHqQLtGckiVAl25FQ"/>
-</div>
-<div class="flex-1">
-<h4 class="font-label-md text-label-md text-on-surface">Asl ko'k choy (Maxsus tanlov)</h4>
-<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">200g</p>
-<div class="flex justify-between items-center mt-2">
-<span class="font-headline-sm text-headline-sm text-primary">45,000 UZS</span>
-<span class="font-label-md text-label-md text-on-surface-variant bg-surface-container px-2 py-1 rounded">x 1</span>
-</div>
-</div>
-</div>
-<!-- Item 2 -->
-<div class="flex items-center gap-4 border-b border-surface-container-high pb-4">
-<div class="w-16 h-16 rounded-lg bg-surface-container-low overflow-hidden flex-shrink-0">
-<img class="w-full h-full object-cover" data-alt="A sleek, professional product shot of freshly roasted, premium coffee beans spilling out of a rustic, textured burlap sack onto a clean, bright white marble surface. The lighting is soft and diffused, creating a modern, minimalist vibe. The warm browns of the coffee contrast beautifully with the pure, clean background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWuy_2939OF88K12VfxVOukfe_cT2JpxxIy46H5NP1DZjXSRU0jxB4D4S7AjI5z9Ivicr6vutMv1coHyx7CLbsy96zzH3turJ9hHLtglKm3IQM9IWCX5mJuz4HE2wFpHXMqnxNoA9T9A6BtRjYbLzVDYlMvif4sSyslzTxeb58tmdY1LtIK_YkaDgZjZ72VBERl--40W6TeGnMN488kxB0Z5F7fIHBLKAwqeodSXob9d5Dp_zKARTCuw"/>
-</div>
-<div class="flex-1">
-<h4 class="font-label-md text-label-md text-on-surface">Efiopiya qahvasi yengil qovurilgan</h4>
-<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">250g</p>
-<div class="flex justify-between items-center mt-2">
-<span class="font-headline-sm text-headline-sm text-primary">85,000 UZS</span>
-<span class="font-label-md text-label-md text-on-surface-variant bg-surface-container px-2 py-1 rounded">x 2</span>
-</div>
-</div>
-</div>
+<div id="checkout-items" class="flex flex-col gap-md">
+<!-- Items loaded by JS -->
 </div>
 <!-- Totals -->
 <div class="flex flex-col gap-2 mt-md pt-2">
 <div class="flex justify-between items-center text-on-surface-variant font-body-md text-body-md">
 <span>Mahsulotlar summasi</span>
-<span>215,000 UZS</span>
+<span id="checkout-subtotal">0 UZS</span>
 </div>
 <div class="flex justify-between items-center text-on-surface-variant font-body-md text-body-md">
 <span>Yetkazib berish</span>
-<span>15,000 UZS</span>
+<span id="checkout-delivery">15,000 UZS</span>
 </div>
 <div class="flex justify-between items-center font-headline-sm text-headline-sm text-primary mt-sm pt-sm border-t border-surface-container-high">
 <span>Jami to'lov</span>
-<span>230,000 UZS</span>
+<span id="checkout-total">0 UZS</span>
 </div>
 </div>
 </section>
 </main>
 <!-- Sticky Bottom Action Bar -->
 <div class="fixed bottom-0 left-0 w-full bg-surface/90 backdrop-blur-md border-t border-outline-variant/30 z-50 p-margin-mobile shadow-level-2 md:relative md:bg-transparent md:border-none md:shadow-none md:p-0 md:mb-lg md:max-w-[800px] md:mx-auto">
-<button class="w-full bg-primary text-on-primary font-label-md text-label-md md:text-body-lg rounded-xl py-4 flex justify-center items-center hover:bg-primary-container transition-colors shadow-level-1">
+<button onclick="submitOrder()" class="w-full bg-primary text-on-primary font-label-md text-label-md md:text-body-lg rounded-xl py-4 flex justify-center items-center hover:bg-primary-container transition-colors shadow-level-1">
             Buyurtmani tasdiqlash
         </button>
 </div>
