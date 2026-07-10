@@ -129,7 +129,8 @@ async function loadOrders() {
     if (!container) return;
 
     try {
-        const orders = await fetchAPI('/orders/');
+        const res = await fetchAPI('/orders/');
+        const orders = res.results || res;
         container.innerHTML = '';
         if (orders.length === 0) {
             container.innerHTML = '<p class="text-center text-on-surface-variant p-4">Sizda hali buyurtmalar yo`q.</p>';
@@ -162,7 +163,8 @@ async function loadCatalog() {
     if (!grid) return;
     
     try {
-        const products = await fetchAPI('/catalog/products/');
+        const res = await fetchAPI('/catalog/products/');
+        const products = res.results || res;
         grid.innerHTML = ''; // Tozalash
 
         products.forEach(p => {
